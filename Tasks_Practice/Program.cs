@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
+using System.Threading.Tasks;
 
-namespace Threads_Practice
+namespace Tasks_Practice
 {
     class Program
     {
@@ -11,15 +11,17 @@ namespace Threads_Practice
 
         static void Main(string[] args)
         {
-            new Thread(WriteNumbers).Start();
-            new Thread(PrintNumbers).Start();
+            Task.Run(WriteNumbers);
+            Task.Run(PrintNumbers);
+
+            Console.ReadLine();
         }
 
         static void WriteNumbers()
         {
             for (int i = 2; numbers.Count < 15; i++)
             {
-                if(IsPrime(i))
+                if (IsPrime(i))
                 {
                     numbers.Add(i);
                 }
@@ -30,7 +32,7 @@ namespace Threads_Practice
         {
             while (printedCount < 15)
             {
-                if (numbers.Count != 0 && numbers.Count % 5 == 0)
+                if (numbers.Count % 5 == 0)
                 {
                     Console.WriteLine("Print");
                     for (int i = printedCount; i < printedCount + 5; i++)
