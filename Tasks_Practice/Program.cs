@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Tasks_Practice
@@ -11,6 +12,7 @@ namespace Tasks_Practice
 
         static void Main(string[] args)
         {
+            Console.WriteLine(Thread.CurrentThread.IsBackground);
             Task.Run(WriteNumbers);
             Task.Run(PrintNumbers);
 
@@ -19,6 +21,7 @@ namespace Tasks_Practice
 
         static void WriteNumbers()
         {
+            Console.WriteLine(Thread.CurrentThread.IsBackground);
             for (int i = 2; numbers.Count < 15; i++)
             {
                 if (IsPrime(i))
@@ -32,7 +35,7 @@ namespace Tasks_Practice
         {
             while (printedCount < 15)
             {
-                if (numbers.Count % 5 == 0)
+                if (numbers.Count != 0 && numbers.Count % 5 == 0)
                 {
                     Console.WriteLine("Print");
                     for (int i = printedCount; i < printedCount + 5; i++)
